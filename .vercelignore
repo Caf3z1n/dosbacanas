@@ -1,0 +1,13 @@
+.git
+.next
+node_modules
+.playwright-mcp
+*.tsbuildinfo
+*.log
+.env*
+AGENTS.md
+CLAUDE.md
+DESIGN.md
+README.md
+scripts
+tests
