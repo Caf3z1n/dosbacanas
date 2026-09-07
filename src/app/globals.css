@@ -12,6 +12,7 @@
   box-sizing: border-box;
 }
 html {
+  scrollbar-gutter: stable;
   scroll-behavior: smooth;
   scroll-padding-top: 164px;
   color-scheme: dark;
@@ -1900,4 +1901,14 @@ h1 {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+.brand-icon {
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+.google-icon {
+  background: #fff;
+  border-radius: 50%;
+  padding: 2px;
 }

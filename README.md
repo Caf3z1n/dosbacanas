@@ -6,6 +6,8 @@ Projeto Next.js 16 + React 19 + TypeScript, com prioridade para celular. Catálo
 
 Site: [dosbacanas.vercel.app](https://dosbacanas.vercel.app).
 
+QR Code para acessar o site: [PNG](https://dosbacanas.vercel.app/qrcode-dosbacanas.png) e [SVG para impressão](https://dosbacanas.vercel.app/qrcode-dosbacanas.svg). Os arquivos também estão em `public/`; a leitura foi validada para o endereço de produção.
+
 Versões: [Essência](https://dosbacanas.vercel.app/cardapio1), [Manifesto](https://dosbacanas.vercel.app/cardapio2), [After Dark](https://dosbacanas.vercel.app/cardapio3), [À Mesa](https://dosbacanas.vercel.app/cardapio4) e [Bacanas Club](https://dosbacanas.vercel.app/cardapio5).
 
 Repositório privado: [Caf3z1n/dosbacanas](https://github.com/Caf3z1n/dosbacanas).
@@ -85,3 +87,5 @@ Os aliases `/cardario1` até `/cardario5` redirecionam para as rotas corresponde
 O botão de paleta no cabeçalho troca de versão. O botão de pausa desativa os movimentos, e a preferência de movimento reduzido do dispositivo é respeitada automaticamente. O painel de categorias usa fotos reais, ícones, agrupamento e busca em todas as versões.
 
 As transições de produto têm máscaras de revelação, aproximação e foco da foto, entrada sequencial de nome/descrição/preço e deslocamento sutil da imagem conforme a rolagem. Só os cards próximos à tela recebem atualizações de movimento. O foco do teclado cancela a animação do card para disponibilizar a interação imediatamente.
+
+No celular, as transições usam duração 40% maior e aceleração mais suave. Os modais preservam a largura e a posição da página, incluindo os elementos fixos; a rolagem do fundo fica bloqueada até fechar. WhatsApp e Google usam os desenhos dos logotipos presentes no cardápio original.

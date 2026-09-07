@@ -1,19 +1,13 @@
 "use client";
-import { useEffect, useRef, type ReactNode } from "react";
+import { useLayoutEffect, useRef, type ReactNode } from "react";
 import Image from "next/image";
-import {
-  ArrowUpRight,
-  Clock3,
-  MapPin,
-  MessageCircle,
-  Star,
-  Utensils,
-  X,
-} from "lucide-react";
+import { WhatsAppIcon } from "./brand-icons";
+import { ArrowUpRight, Clock3, MapPin, Star, Utensils, X } from "lucide-react";
 import { links, type Category, type Product } from "@/lib/menu";
 import { ProductImage, Price } from "./product-card";
 import type { MenuAlert } from "@/data/mock-config";
 import { CategoryExplorer } from "./category-explorer";
+import { lockMenuScroll } from "@/lib/modal-scroll-lock";
 
 export type Overlay =
   | { kind: "product"; product: Product }
@@ -33,15 +27,14 @@ function Dialog({
   className?: string;
 }) {
   const ref = useRef<HTMLDialogElement>(null);
-  useEffect(() => {
+  useLayoutEffect(() => {
     const dialog = ref.current;
     const previous = document.activeElement as HTMLElement | null;
-    const overflow = document.body.style.overflow;
+    const unlock = lockMenuScroll();
     dialog?.showModal();
-    document.body.style.overflow = "hidden";
     return () => {
       dialog?.close();
-      document.body.style.overflow = overflow;
+      unlock();
       previous?.focus({ preventScroll: true });
     };
   }, []);
@@ -236,7 +229,7 @@ export function MenuDialog({
             target="_blank"
             rel="noopener noreferrer"
           >
-            <MessageCircle size={18} /> Falar com a gente
+            <WhatsAppIcon size={18} /> Falar com a gente
           </a>
           <a
             className="text-button"

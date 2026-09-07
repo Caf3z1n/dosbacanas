@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { GoogleIcon, WhatsAppIcon } from "./brand-icons";
 import {
   useEffect,
   useMemo,
@@ -15,7 +16,6 @@ import {
   Check,
   Clock3,
   LayoutGrid,
-  MessageCircle,
   RefreshCw,
   Search,
   Star,
@@ -262,7 +262,7 @@ export function MenuExperience({
               rel="noopener noreferrer"
               aria-label="Falar conosco via WhatsApp"
             >
-              <MessageCircle size={17} />
+              <WhatsAppIcon size={17} />
               <span>Fale com a gente</span>
               <ArrowUpRight size={15} />
             </a>
@@ -602,9 +602,7 @@ export function MenuExperience({
               target="_blank"
               rel="noopener noreferrer"
             >
-              <span className="google-letter" aria-hidden="true">
-                G
-              </span>
+              <GoogleIcon />
               Avaliar no Google
               <ArrowUpRight size={16} />
             </a>
@@ -648,7 +646,7 @@ export function MenuExperience({
           <span>Buscar</span>
         </button>
         <a href={links.whatsapp} target="_blank" rel="noopener noreferrer">
-          <MessageCircle size={20} />
+          <WhatsAppIcon size={20} />
           <span>Fale conosco</span>
         </a>
       </nav>

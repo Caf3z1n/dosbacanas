@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, type RefObject } from "react";
 import type { ThemeId } from "@/lib/themes";
+import { isMenuScrollLocked, scrollUnlockEvent } from "@/lib/modal-scroll-lock";
 
 // Art direction controls the choreography; the content never depends on motion.
 const directions = {
@@ -71,7 +72,10 @@ export function useCinematicMotion(
     const moving = new Set<HTMLElement>();
     const animations = new Set<Animation>();
     let frame = 0;
-    const ease = "cubic-bezier(.16,1,.3,1)";
+    const pace = compact ? 1.4 : 1;
+    const ease = compact
+      ? "cubic-bezier(.22,.68,.18,1)"
+      : "cubic-bezier(.16,1,.3,1)";
 
     function animate(
       element: Element | null,
@@ -79,10 +83,10 @@ export function useCinematicMotion(
       duration: number,
       delay = 0,
     ) {
-      if (!element) return;
+      if (!element || isMenuScrollLocked()) return;
       const animation = element.animate(frames, {
-        duration,
-        delay,
+        duration: Math.round(duration * pace),
+        delay: Math.round(delay * pace),
         easing: ease,
         fill: "both",
       });
@@ -202,6 +206,7 @@ export function useCinematicMotion(
     }
     const reveal = new IntersectionObserver(
       (entries) => {
+        if (isMenuScrollLocked()) return;
         for (const entry of entries) {
           if (!entry.isIntersecting || seen.has(entry.target)) continue;
           seen.add(entry.target);
@@ -216,6 +221,7 @@ export function useCinematicMotion(
 
     function paint() {
       frame = 0;
+      if (isMenuScrollLocked()) return;
       const height = window.innerHeight;
       const changes: { card: HTMLElement; offset: number }[] = [];
       moving.forEach((card) => {
@@ -246,6 +252,7 @@ export function useCinematicMotion(
     };
     const proximity = new IntersectionObserver(
       (entries) => {
+        if (isMenuScrollLocked()) return;
         entries.forEach((entry) => {
           if (entry.isIntersecting) moving.add(entry.target as HTMLElement);
           else moving.delete(entry.target as HTMLElement);
@@ -267,6 +274,19 @@ export function useCinematicMotion(
             proximity.observe(element);
         });
     }
+    function resumeScroll() {
+      parent!
+        .querySelectorAll<HTMLElement>(
+          ".product-card, .menu-section-heading, .section-heading, .catalog-top, .review-inner",
+        )
+        .forEach((element) => {
+          if (!seen.has(element)) {
+            reveal.unobserve(element);
+            reveal.observe(element);
+          }
+        });
+      scroll();
+    }
     // A keyboard user can move through products immediately, even during a reveal.
     function focus(event: FocusEvent) {
       const card = (event.target as HTMLElement).closest<HTMLElement>(
@@ -286,6 +306,7 @@ export function useCinematicMotion(
     parent.addEventListener("focusin", focus);
     window.addEventListener("scroll", scroll, { passive: true });
     window.addEventListener("resize", scroll, { passive: true });
+    window.addEventListener(scrollUnlockEvent, resumeScroll);
     return () => {
       reveal.disconnect();
       proximity.disconnect();
@@ -295,6 +316,7 @@ export function useCinematicMotion(
       parent.removeEventListener("focusin", focus);
       window.removeEventListener("scroll", scroll);
       window.removeEventListener("resize", scroll);
+      window.removeEventListener(scrollUnlockEvent, resumeScroll);
       parent
         .querySelectorAll<HTMLElement>(".cinematic-card")
         .forEach((card) => {
