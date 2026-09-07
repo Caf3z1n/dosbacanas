@@ -22,28 +22,28 @@ const directions = {
     travel: 9,
   },
   3: {
-    duration: 1500,
-    lift: 85,
-    rotate: 8,
-    zoom: 1.38,
-    wipe: "inset(48% 0 48% 0)",
-    travel: 17,
+    duration: 1400,
+    lift: 62,
+    rotate: 5,
+    zoom: 1.23,
+    wipe: "inset(0 0 100% 0)",
+    travel: 9,
   },
   4: {
-    duration: 1350,
-    lift: 45,
-    rotate: 0,
-    zoom: 1.2,
-    wipe: "inset(100% 0 0 0)",
-    travel: 8,
+    duration: 1550,
+    lift: 82,
+    rotate: 10,
+    zoom: 1.34,
+    wipe: "inset(48% 0 48% 0)",
+    travel: 16,
   },
   5: {
-    duration: 1250,
-    lift: 80,
-    rotate: 11,
-    zoom: 1.3,
-    wipe: "inset(16% 12% 16% 12% round 60px)",
-    travel: 13,
+    duration: 1450,
+    lift: 45,
+    rotate: 0,
+    zoom: 1.17,
+    wipe: "inset(0 100% 0 0)",
+    travel: 8,
   },
 } satisfies Record<
   ThemeId,
@@ -264,7 +264,7 @@ export function useCinematicMotion(
     function watch() {
       parent!
         .querySelectorAll<HTMLElement>(
-          ".product-card, .menu-section-heading, .section-heading, .catalog-top, .review-inner",
+          ".product-card, .menu-section-heading, .section-heading, .catalog-top, .review-inner, [data-cinema-heading]",
         )
         .forEach((element) => {
           if (watched.has(element)) return;
@@ -277,7 +277,7 @@ export function useCinematicMotion(
     function resumeScroll() {
       parent!
         .querySelectorAll<HTMLElement>(
-          ".product-card, .menu-section-heading, .section-heading, .catalog-top, .review-inner",
+          ".product-card, .menu-section-heading, .section-heading, .catalog-top, .review-inner, [data-cinema-heading]",
         )
         .forEach((element) => {
           if (!seen.has(element)) {

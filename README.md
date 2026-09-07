@@ -8,7 +8,7 @@ Site: [dosbacanas.vercel.app](https://dosbacanas.vercel.app).
 
 QR Code para acessar o site: [PNG](https://dosbacanas.vercel.app/qrcode-dosbacanas.png) e [SVG para impressão](https://dosbacanas.vercel.app/qrcode-dosbacanas.svg). Os arquivos também estão em `public/`; a leitura foi validada para o endereço de produção.
 
-Versões: [Essência](https://dosbacanas.vercel.app/cardapio1), [Manifesto](https://dosbacanas.vercel.app/cardapio2), [After Dark](https://dosbacanas.vercel.app/cardapio3), [À Mesa](https://dosbacanas.vercel.app/cardapio4) e [Bacanas Club](https://dosbacanas.vercel.app/cardapio5).
+Versões: [Essência](https://dosbacanas.vercel.app/cardapio1), [Manifesto](https://dosbacanas.vercel.app/cardapio2), [Mesa Viva](https://dosbacanas.vercel.app/cardapio3), [Balcão 360](https://dosbacanas.vercel.app/cardapio4) e [Edição Bacana](https://dosbacanas.vercel.app/cardapio5).
 
 Repositório privado: [Caf3z1n/dosbacanas](https://github.com/Caf3z1n/dosbacanas).
 
@@ -74,13 +74,13 @@ O importador lê somente dados públicos e nunca executa o JavaScript do site de
 
 Todas compartilham o mesmo catálogo e o amarelo exato `#fdc500`.
 
-| Rota         | Visual       | Composição e movimento                                                                      |
-| ------------ | ------------ | ------------------------------------------------------------------------------------------- |
-| `/cardapio1` | Essência     | Versão principal, fotos e serifas sobre preto; entradas em profundidade                     |
-| `/cardapio2` | Manifesto    | Pôster amarelo, colagem inclinada, faixa em movimento e fotos circulares                    |
-| `/cardapio3` | After Dark   | Carrossel de drinks, fotografia cinematográfica, galeria vertical e revelação em letterbox  |
-| `/cardapio4` | À Mesa       | Papel claro, fotos em arco, índice lateral e animação de abertura da imagem                 |
-| `/cardapio5` | Bacanas Club | Mosaico interativo, blocos arredondados, profundidade e catálogo em duas colunas no celular |
+| Rota         | Visual        | Composição e movimento                                                                |
+| ------------ | ------------- | ------------------------------------------------------------------------------------- |
+| `/cardapio1` | Essência      | Versão principal, fotos e serifas sobre preto; entradas em profundidade               |
+| `/cardapio2` | Manifesto     | Pôster amarelo, colagem inclinada, faixa em movimento e fotos circulares              |
+| `/cardapio3` | Mesa Viva     | Light: mesa circular interativa, escolhas por ocasião e catálogo com fotos circulares |
+| `/cardapio4` | Balcão 360    | Dark: console de sabores com seletor rotativo, controles táteis e fichas numeradas    |
+| `/cardapio5` | Edição Bacana | Light: revista gastronômica, edições interativas e pranchas fotográficas              |
 
 Os aliases `/cardario1` até `/cardario5` redirecionam para as rotas correspondentes, preservando a busca. `/` e `/cardapiodigital` continuam na versão principal.
 

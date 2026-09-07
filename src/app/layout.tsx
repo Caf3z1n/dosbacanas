@@ -2,6 +2,9 @@ import type { Metadata, Viewport } from "next";
 import { Barlow_Condensed, DM_Sans, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import "./themes.css";
+import "@/components/themes/mesa-viva.css";
+import "@/components/themes/balcao-360.css";
+import "@/components/themes/edicao-bacana.css";
 const sans = DM_Sans({
   variable: "--font-sans",
   subsets: ["latin"],

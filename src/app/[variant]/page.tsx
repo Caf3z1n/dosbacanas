@@ -7,6 +7,16 @@ export const dynamicParams = false;
 export function generateStaticParams() {
   return themes.map((theme) => ({ variant: `cardapio${theme.id}` }));
 }
+export async function generateViewport({
+  params,
+}: {
+  params: Promise<{ variant: string }>;
+}) {
+  const theme = getTheme((await params).variant);
+  return {
+    themeColor: theme?.id === 3 || theme?.id === 5 ? "#fffdf6" : "#070504",
+  };
+}
 export async function generateMetadata({
   params,
 }: {

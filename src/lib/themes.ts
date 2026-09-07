@@ -15,21 +15,21 @@ export const themes = [
   },
   {
     id: 3,
-    name: "After Dark",
-    description: "Coquetelaria em cena. Uma experiência cinematográfica.",
-    tone: "night",
+    name: "Mesa Viva",
+    description: "Uma mesa clara, tátil e cheia de descobertas.",
+    tone: "table",
   },
   {
     id: 4,
-    name: "À Mesa",
-    description: "Uma carta gastronômica clara, elegante e editorial.",
-    tone: "paper",
+    name: "Balcão 360",
+    description: "Gire, explore e encontre o sabor do seu momento.",
+    tone: "console",
   },
   {
     id: 5,
-    name: "Bacanas Club",
-    description: "Mosaico interativo, formas generosas e descobertas.",
-    tone: "club",
+    name: "Edição Bacana",
+    description: "Uma revista de sabores. Cada página, uma descoberta.",
+    tone: "edition",
   },
 ] as const;
 

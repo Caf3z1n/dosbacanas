@@ -39,7 +39,7 @@ export function lockMenuScroll() {
   const restoreBehavior = preserveProperties(root.style, ["scroll-behavior"]);
   const sticky = Array.from(
     body.querySelectorAll<HTMLElement>(
-      ".site-header, .category-bar, .editorial-index",
+      ".site-header, .category-bar, .editorial-index, [data-scroll-lock-sticky]",
     ),
   )
     .filter(

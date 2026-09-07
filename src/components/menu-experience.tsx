@@ -35,6 +35,7 @@ import { ProductCard } from "./product-card";
 import { MenuDialog, type Overlay } from "./menu-dialog";
 import { ThemeFrame, ThemeControls } from "./themes/theme-frame";
 import { ThemeHero } from "./themes/theme-heroes";
+import { RedesignHighlights, RedesignCatalog } from "./themes/redesign-router";
 import type { ThemeId } from "@/lib/themes";
 import { CategoryIcon } from "./category-visual";
 
@@ -318,67 +319,77 @@ export function MenuExperience({
           </div>
         </div>
 
-        {isDefault && (
-          <section
-            className="shell highlights"
-            aria-labelledby="highlights-title"
-          >
-            <div className="section-heading">
-              <div>
-                <span className="eyebrow">
-                  <Star size={12} /> OS QUERIDINHOS DA CASA
-                </span>
-                <h2 id="highlights-title">Quem prova, pede de novo.</h2>
+        {isDefault &&
+          (variant < 3 ? (
+            <section
+              className="shell highlights"
+              aria-labelledby="highlights-title"
+            >
+              <div className="section-heading">
+                <div>
+                  <span className="eyebrow">
+                    <Star size={12} /> OS QUERIDINHOS DA CASA
+                  </span>
+                  <h2 id="highlights-title">Quem prova, pede de novo.</h2>
+                </div>
+                <button
+                  className="text-button gold-text"
+                  onClick={() => chooseFilter("top")}
+                >
+                  Ver mais pedidos <ArrowRight size={17} />
+                </button>
               </div>
-              <button
-                className="text-button gold-text"
-                onClick={() => chooseFilter("top")}
-              >
-                Ver mais pedidos <ArrowRight size={17} />
-              </button>
-            </div>
-            <div className="featured-grid">
-              {topProducts.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  featured
-                  category={
-                    data.categories.find((c) => c.id === product.category_id)
-                      ?.name
-                  }
-                  onSelect={openProduct}
-                />
-              ))}
-              <button
-                className="happy-card"
-                onClick={() => chooseCategory("happy-hour")}
-              >
-                <div className="happy-card-top">
-                  <span className="eyebrow">O MELHOR BRINDE DO DIA</span>
-                  <ArrowUpRight size={22} />
-                </div>
-                <div className="happy-card-middle">
-                  <span className="happy-script">É hora de</span>
-                  <span className="happy-title">
-                    Happy
-                    <br />
-                    Hour.
-                  </span>
-                  <Beer className="happy-beer" size={90} strokeWidth={0.7} />
-                </div>
-                <div className="happy-card-bottom">
-                  <span>
-                    <Clock3 size={14} /> Seg a sex, das 17h às 20h
-                  </span>
-                  <span className="happy-cta">
-                    Explore as ofertas <ArrowRight size={17} />
-                  </span>
-                </div>
-              </button>
-            </div>
-          </section>
-        )}
+              <div className="featured-grid">
+                {topProducts.map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    featured
+                    category={
+                      data.categories.find((c) => c.id === product.category_id)
+                        ?.name
+                    }
+                    onSelect={openProduct}
+                  />
+                ))}
+                <button
+                  className="happy-card"
+                  onClick={() => chooseCategory("happy-hour")}
+                >
+                  <div className="happy-card-top">
+                    <span className="eyebrow">O MELHOR BRINDE DO DIA</span>
+                    <ArrowUpRight size={22} />
+                  </div>
+                  <div className="happy-card-middle">
+                    <span className="happy-script">É hora de</span>
+                    <span className="happy-title">
+                      Happy
+                      <br />
+                      Hour.
+                    </span>
+                    <Beer className="happy-beer" size={90} strokeWidth={0.7} />
+                  </div>
+                  <div className="happy-card-bottom">
+                    <span>
+                      <Clock3 size={14} /> Seg a sex, das 17h às 20h
+                    </span>
+                    <span className="happy-cta">
+                      Explore as ofertas <ArrowRight size={17} />
+                    </span>
+                  </div>
+                </button>
+              </div>
+            </section>
+          ) : (
+            <RedesignHighlights
+              variant={variant}
+              products={data.products}
+              categories={data.categories}
+              onSelect={openProduct}
+              onCategory={chooseCategory}
+              onTopPicks={() => chooseFilter("top")}
+            />
+          ))}
 
         <section
           id="cardapio"
@@ -386,28 +397,6 @@ export function MenuExperience({
           className="shell catalog"
           aria-labelledby="catalog-title"
         >
-          {variant === 4 && (
-            <aside className="editorial-index" aria-label="Índice do cardápio">
-              <span className="eyebrow">À SUA ESCOLHA</span>
-              <h2>A carta.</h2>
-              <button
-                aria-pressed={category === "all"}
-                onClick={() => chooseCategory("all")}
-              >
-                Tudo<span>192</span>
-              </button>
-              {data.categories.map((c, i) => (
-                <button
-                  key={c.id}
-                  aria-pressed={category === c.slug}
-                  onClick={() => chooseCategory(c.slug)}
-                >
-                  <span>{c.name}</span>
-                  <small>{String(i + 1).padStart(2, "0")}</small>
-                </button>
-              ))}
-            </aside>
-          )}
           <div className="catalog-content">
             <div className="catalog-top">
               <div>
@@ -519,35 +508,44 @@ export function MenuExperience({
                 <Beer size={27} />
               </div>
             )}
-            {data.categories.map((c) => {
-              const items = products.filter((p) => p.category_id === c.id);
-              if (!items.length) return null;
-              return (
-                <section
-                  key={c.id}
-                  className="menu-section"
-                  aria-labelledby={`title-${c.slug}`}
-                >
-                  <div className="menu-section-heading">
-                    <div className="menu-section-title">
-                      <CategoryIcon slug={c.slug} size={20} />
-                      <h2 id={`title-${c.slug}`}>{c.name}</h2>
-                      <span>{items.length.toString().padStart(2, "0")}</span>
+            {variant >= 3 ? (
+              <RedesignCatalog
+                variant={variant}
+                categories={data.categories}
+                products={products}
+                onSelect={openProduct}
+              />
+            ) : (
+              data.categories.map((c) => {
+                const items = products.filter((p) => p.category_id === c.id);
+                if (!items.length) return null;
+                return (
+                  <section
+                    key={c.id}
+                    className="menu-section"
+                    aria-labelledby={`title-${c.slug}`}
+                  >
+                    <div className="menu-section-heading">
+                      <div className="menu-section-title">
+                        <CategoryIcon slug={c.slug} size={20} />
+                        <h2 id={`title-${c.slug}`}>{c.name}</h2>
+                        <span>{items.length.toString().padStart(2, "0")}</span>
+                      </div>
+                      {c.description && <p>{c.description}</p>}
                     </div>
-                    {c.description && <p>{c.description}</p>}
-                  </div>
-                  <div className="product-grid">
-                    {items.map((product) => (
-                      <ProductCard
-                        key={product.id}
-                        product={product}
-                        onSelect={openProduct}
-                      />
-                    ))}
-                  </div>
-                </section>
-              );
-            })}
+                    <div className="product-grid">
+                      {items.map((product) => (
+                        <ProductCard
+                          key={product.id}
+                          product={product}
+                          onSelect={openProduct}
+                        />
+                      ))}
+                    </div>
+                  </section>
+                );
+              })
+            )}
             {!products.length && (
               <div className="empty-state">
                 <Search size={34} strokeWidth={1} />

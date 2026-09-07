@@ -19,16 +19,18 @@ Evitar: cores fora da marca, avaliações inventadas, excesso de gradientes, tex
 
 ## Referências e direção das variações
 
-Pedido de 07/09/2026: cinco versões completas e distintas, preservando o amarelo característico; uma versão clara permitida. O usuário solicitou ainda um painel de categorias com ícones/fotos e transições cinematográficas dos produtos. Implementação direta das cinco direções solicitadas, sem etapa intermediária de escolha.
+As versões 1 e 2 são os alvos aprovados. Seus componentes de abertura, cores, catálogo e movimentos foram preservados. As versões 3, 4 e 5 têm composições próprias para abertura, destaques e catálogo, mantendo o amarelo característico #fdc500. As versões 3 e 5 são light mode.
 
-Referências consultadas: BrewDog (https://brewdog.com), para tipografia assertiva e organização por ocasião; Death & Co (https://www.deathandcompany.com), para hero de galeria, enquadramento e preto com fotografia noturna; Dishoom (https://www.dishoom.com/food-drink/), para leitura editorial e fotos gastronômicas; Sweetgreen (https://www.sweetgreen.com), para composição modular, hierarquia sans e blocos fotográficos. Nenhuma cor dessas marcas foi importada: o destaque é sempre #fdc500. Imagens são exclusivamente do catálogo do Dos Bacanas.
+| Versão        | Direção e estrutura                                                               | Interação                                                                      |
+| ------------- | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| Essência      | Original aprovado: preto quente, amarelo, Playfair e DM Sans                      | Máscara vertical, aproximação e texto em sequência                             |
+| Manifesto     | Original aprovado: pôster amarelo, Barlow Condensed, colagem                      | Entrada lateral, inclinação e faixa com pausa                                  |
+| Mesa Viva     | Branco, tipografia geométrica, mesa circular com fotos reais e catálogo em seções | Ocasiões para dividir/brindar/adoçar, miniaturas e sugestões sobre a mesa      |
+| Balcão 360    | Grafite e amarelo, console de descoberta e fichas horizontais numeradas           | Seletor por slider, setas e teclado; descoberta por setores do cardápio        |
+| Edição Bacana | Revista clara, masthead grande, réguas editoriais e pranchas assimétricas         | Capas Cozinha/Bar/Doce, virada de página e sorteio de produto real por vontade |
 
-| Versão       | Traços preservados na implementação                                        | Coreografia                                                                           |
-| ------------ | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| Essência     | Composição original aprovada, preto quente, amarelo, Playfair e DM Sans    | Aproximação suave, máscara vertical e texto em sequência                              |
-| Manifesto    | Amarelo dominante, Barlow Condensed, alto contraste, colagem fotográfica   | Entrada lateral alternada, inclinação, revelação horizontal, faixa contínua com pausa |
-| After Dark   | Hero panorâmico com controles, serifas amplas e galeria de fotos verticais | Abertura letterbox, foco e zoom, entrada com profundidade                             |
-| À Mesa       | Papel claro, texto escuro, selo amarelo, fotos em arco e índice de carta   | Revelação ascendente da foto e movimento editorial mais delicado                      |
-| Bacanas Club | Mosaico de blocos arredondados, fotos reais e ações visuais por categoria  | Stagger do mosaico, tilt por mouse e entradas de produto em perspectiva               |
+A fundamentação de cada nova direção está em [Mesa Viva](docs/design-mesa-viva.md), [Balcão 360](docs/design-balcao-360.md) e [Edição Bacana](docs/design-edicao-bacana.md). Referências externas contribuem com estrutura e interação; fotos e informações são do Dos Bacanas. As cores de outras marcas não foram importadas.
 
-As animações de catálogo são deliberadamente mais expressivas (1,1–1,5 s no desktop, foto finalizando em até 1,78 s) conforme pedido explícito do usuário. No celular, durações e intervalos usam fator 1,4 e uma curva mais suave, para apreciar a entrada dos produtos com calma. Os controles continuam imediatos; sem scroll hijacking, sem telas de espera e sem esconder conteúdo quando JavaScript ou movimento não estiverem disponíveis. Pausa, movimento reduzido, foco, filtros e mudança de rota limpam as animações pertinentes.
+As entradas do catálogo mantêm coreografia cinematográfica com fator 1,4 no celular, aceleração suave, pausa e movimento reduzido. Controles permanecem operáveis e o foco do teclado encerra a entrada do item. O bloqueio dos modais mantém largura, posição e elementos sticky; os índices novos declaram data-scroll-lock-sticky para entrar nessa preservação.
+
+Verificações: baseline das versões 1/2 por dimensões, cores, tipografia e layout; catálogo das novas versões comparado item a item contra a versão aprovada; revisão de telas, interações e modais em celular e desktop.
